@@ -3,7 +3,7 @@ eventgen.py
 
 This is some simple Python code for generating and printing recurring events.
 It's primarily designed for use with
-[https://wordpress.org/plugins/the-events-calendar/](The Events Calender)
+[The Events Calendar](https://wordpress.org/plugins/the-events-calendar/)
 WordPress plugin, the free version of which doesn't support recurring events
 but does support CSV import.
 
