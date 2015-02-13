@@ -11,3 +11,4 @@ It supports a moderately literate syntax for describing recurrences:
 
     recurrence = every(Saturday).from(date.today()).until(endOfThisYear())
 
+The ```eventgen.py``` file shows an example usage.
