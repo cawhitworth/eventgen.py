@@ -15,8 +15,9 @@ DOTW = [ Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday ]
 
 class Recurrence(object):
     def __init__(self):
-        self.startDate = date.today()
-        self.endDate = date.today()
+        self.startDate = None
+        self.endDate = None
+        self.occurrencesCount = None
         self.filters = []
 
     def starting(self, startDate):
@@ -34,14 +35,27 @@ class Recurrence(object):
         newRecurrence.filters.append(filterObject)
         return newRecurrence
 
+    def occurrences(self, count):
+        newRecurrence = copy.copy(self)
+        newRecurrence.occurrencesCount = count
+        return newRecurrence
+
     def dates(self):
         date = self.startDate
-        while date <= self.endDate:
+        count = 0
+        while True:
             ok = reduce(lambda x,y : x and y,
                     map(lambda x: x.filter(date), self.filters) )
             if ok:
+                count += 1
                 yield date
             date += timedelta(1)
+            if self.endDate != None:
+                if date > self.endDate:
+                    break
+            if self.occurrencesCount != None:
+                if count == self.occurrencesCount:
+                    break
 
 class DayOfTheWeekFilter(object):
     def __init__(self, day):
